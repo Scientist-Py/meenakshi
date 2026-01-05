@@ -81,7 +81,7 @@ async def handle_message(client, message):
         photo1 = os.path.join("images", "Untitled design.png")
         photo2 = os.path.join("images", "White Brown Simple Vintage Restaurant Menu Poster.png")
         
-        caption = "� **Warning: 18+ Only**\n\nThis is only for 18+. Here nude show goes, so if you are 18+ then only come.\n\n💰 If you have money, then only come here, OTHER DIRECT BLOCK"
+        caption = "🔞 **Warning: 18+ Only**\n\nThis is only for 18+. Here nude show goes, so if you are 18+ then only come.\n\n💰 If you have money, then only come here, OTHER DIRECT BLOCK.\n\n**Please pay and send screenshot.** I am requesting you, my time is very important. So please, if you want to pay then pay and send and wait for 1 minute, I'll call you."
         
         try:
             await client.send_media_group(
