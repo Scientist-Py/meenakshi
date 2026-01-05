@@ -87,7 +87,23 @@ async def handle_message(client, message):
             await client.read_chat_history(message.chat.id)
             print(f"Chat marked as read for {user_id}")
         except Exception as e:
-            print(f"Read Status Error for {user_id}: {e}")
+            print(f"Read Status Error: {e}")
+
+        # --- HUMAN-LIKE BEHAVIOR ---
+        import asyncio
+        import random
+        
+        # A) Wait a random time (5 to 15 seconds) so it doesn't look like a bot
+        delay = random.randint(5, 15)
+        print(f"Waiting {delay} seconds to look human...")
+        await asyncio.sleep(delay)
+        
+        # B) Show "Uploading Photo" status
+        try:
+            await client.send_chat_action(message.chat.id, types.enums.ChatAction.UPLOAD_PHOTO)
+        except:
+            pass
+        # ---------------------------
 
         # 2. Prepare paths
         base_dir = os.path.dirname(os.path.abspath(__file__))
@@ -96,9 +112,9 @@ async def handle_message(client, message):
         
         caption = "**Welcome! Nude Shows**\n\nI only engage with serious clients who are ready for payment. \n\n💰 **Requirement:** Please process your payment and share the screenshot here. \n\nOnce verified, wait for 1 minute and you will receive a call. Time-wasters will be permanently blocked to prioritize serious inquiries."
         
-        # Check if files exist before sending
+        # Check if files exist
         if not os.path.exists(photo1) or not os.path.exists(photo2):
-            print(f"CRITICAL ERROR: One or both image files are missing at paths:\n1: {photo1}\n2: {photo2}")
+            print(f"CRITICAL ERROR: Images missing at paths.")
             return
 
         try:
@@ -110,7 +126,7 @@ async def handle_message(client, message):
                     types.InputMediaPhoto(photo2)
                 ]
             )
-            print(f"Successfully sent media to {user_id}")
+            print(f"Successfully sent to {user_id}")
             mark_user_processed(user_id)
         except Exception as e:
             print(f"Media Send Error for {user_id}: {e}")
